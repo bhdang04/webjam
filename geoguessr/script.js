@@ -3,11 +3,11 @@ let score = 0;
 let panorama;
 
 const places = [
-    [{ lat: 33.643889, lng: -117.841944 }, { building: 'ICS' }],
-    [{ lat: 33.643056, lng: -117.841944 }, { building: 'DBH' }],
-    [{ lat: 33.644444, lng: -117.841111 }, { building: 'ET' }],
-    [{ lat: 33.643056, lng: -117.840000 }, { building: 'INRF'}],
-    [{ lat: 33.646111, lng: -117.843056 }, { building: 'Aldrich'}],
+    [{ lat: 33.643889, lng: -117.841944 }, { building: 'Information and Computer Science' }],
+    [{ lat: 33.643056, lng: -117.841944 }, { building: 'Donald Bren Hall' }],
+    [{ lat: 33.643611, lng: -117.843333 }, { building: 'Frederick Reines Hall' }],
+    [{ lat: 33.645833, lng: -117.845000 }, { building: 'Steinhaus Hall'}],
+    [{ lat: 33.646111, lng: -117.843056 }, { building: 'Aldrich Park'}],
     ];
 
 let currentPlace = places[Math.floor(Math.random() * places.length)];
@@ -27,6 +27,7 @@ const reconfigure = () => {
         document.getElementById('result').style.color = 'black';
         document.getElementById('street-view').style.display = 'none';
         document.getElementById('guess-form').style.display = 'none';
+        document.getElementById('rule').style.display = 'none';
         return;
     }
 
@@ -42,7 +43,7 @@ function initialize() {
         document.getElementById('street-view'),
         {
             position: coordinates,
-            pov: { heading: 165, pitch: 0 },
+            pov: { heading: 50, pitch: 0 },
             zoom: 1,
             disableDefaultUI: true,
             linksControl: false,
@@ -74,3 +75,11 @@ const handleSubmit = (event) => {
 };
 
 document.getElementById('guess-form').addEventListener('submit', handleSubmit);
+
+document.getElementById('Back').addEventListener('click', () => {
+    directToGame('../website.html');
+});
+
+function directToGame(gameFile) {
+    window.location.href = gameFile;
+}
