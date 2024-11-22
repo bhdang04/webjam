@@ -46,6 +46,7 @@ body {
     background-image: url('your-image-url.png'); /* Replace with your image path */
     background-size: cover; /* Ensure the image covers the button */
     background-repeat: no-repeat; /* Prevent repeating */
+    background-color: transparent;
     border: none; /* Remove default border */
     cursor: pointer; /* Add pointer cursor */
     padding: 0; /* Remove padding */
@@ -68,7 +69,7 @@ body {
     height: 0px; */
 
     scale: .588;
-    position: fixed;
+    position: absolute;
     left: -125px;
     bottom: -80px;
     background-color: transparent;
@@ -76,7 +77,7 @@ body {
 }
 
 #tent{
-    position:fixed;
+    position:absolute;
     right: 365px;
     bottom: 341px;
     /* scale: 1.2; */
