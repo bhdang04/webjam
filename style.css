@@ -39,7 +39,15 @@ p{
 
 body {
     background-image: url("background/forestbackdrop.jpg");
-    background-size: 1400px 850px;
+    background-position: bottom; /* Align to the bottom center */
+    background-repeat: no-repeat; /* Prevent tiling */
+    background-size: cover; /* Scale to cover the viewport */
+    min-height: 100vh; /* Ensure body spans the full height of the viewport */
+    margin: 0;
+    display: flex; /* Use Flexbox for layout alignment */
+    flex-direction: column; /* Arrange children vertically */
+    justify-content: space-between; /* Push content to the top and bottom */
+    overflow: hidden;
 }
 
 .image-button {
@@ -49,6 +57,9 @@ body {
     background-color: transparent;
     border: none; /* Remove default border */
     cursor: pointer; /* Add pointer cursor */
+    display: flex; /* Use Flexbox for layout */
+    position: relative; /* Reference for absolute positioning of the image */
+    overflow: hidden; /* Ensures no extra content spills */
     padding: 0; /* Remove padding */
     margin: 0; /* Remove margins */
   }
@@ -68,19 +79,20 @@ body {
     width: 5%;    
     height: 0px; */
 
-    scale: .588;
+    scale: .598;
     position: absolute;
-    left: -125px;
-    bottom: -80px;
+    left: -117px;
+    bottom: 28px;
     background-color: transparent;
-
+    object-fit: contain;
 }
 
 #tent{
-    position:absolute;
-    right: 365px;
-    bottom: 341px;
-    /* scale: 1.2; */
-    width: 200px;    
-    height: 35px;
+    position: absolute;
+    right: -300px;
+    bottom: -21px;
+    scale: 0.4;
+    background-color: transparent;
+    object-fit: contain;
 }
+
