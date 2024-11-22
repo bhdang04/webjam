@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Campsite</title>
     <link rel="stylesheet" href="./style.css">
+    <link rel="GeoGuessr" href="./geoguessr/geoguessr.html">
 </head>
 <body>
     <div class="text-container">
@@ -14,12 +15,14 @@
     </div>
 
     <div class="buttons">
-        <button id="tent" class="image-button" onclick="directToGame('geoguessr')">
+        <button id="tent" class="image-button" onclick="directToGame('geoguessr/geoguessr.html')">
             <img src = "background/tent.png" alt ="A Tent">
         </button>
-        <button id="pond" class="image-button" onclick="directToGame('Fishing')">
+        <button id="pond" class="image-button">
             <img src = "background/pond1.png" alt ="Fishing">
         </button>
     </div>
+
+    <script src="onclick.js"></script>
 </body>
 </html>
