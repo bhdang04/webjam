@@ -3,7 +3,7 @@ document.getElementById('tent').addEventListener('click', () => {
 });
 
 document.getElementById('pond').addEventListener('click', () => {
-    directToGame('fishing.html');
+    directToGame('fishing/fishing.html');
 });
 
 function directToGame(gameFile) {
