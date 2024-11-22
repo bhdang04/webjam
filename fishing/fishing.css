@@ -1,48 +1,16 @@
 body {
+    display: flex; 
+    flex-direction: column; 
+    justify-content: space-between; 
+    overflow: hidden;
+
+    background-image: url("images/props/pond.jpg");
+    background-position: bottom; 
+    background-repeat: no-repeat; 
+    background-size: cover; 
+
+    min-height: 100vh; 
     margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    overflow: hidden; /* Prevent scrolling */
-    background-color: #1b3d6d;
-}
-
-.container {
-    position: relative;
-    text-align: center;
-    bottom: -35%;
-}
-
-button {
-    position: fixed;
-    bottom: 20px;
-    left: 50%;
-    transform: translate(-50%, -50%); 
-    width: 200px;
-    height: 50px;
-    font-family: Verdana;
-    font-size: 25px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    z-index: 1;
-}
-
-button:hover {
-    background-color: #0056b3;
-}
-
-.image-container {
-    position: fixed;
-    top: -100%; /* Start off-screen */
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 10s;
-    transition: top 0.5s ease-in-out; /* Smooth sliding */
 }
 
 img {
@@ -52,16 +20,141 @@ img {
     user-select: none;
 }
 
+.welcome {
+    text-align: left;
+
+    font: bold 65px 'Montserrat', sans-serif;
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: white;
+    line-height: 1.5;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    margin: 20px; 
+}
+
+/*---------------*/
+/* POND MECHANIC */
+/*---------------*/
+
+.splice-container {
+    z-index: 1;
+
+    position: fixed;
+    bottom: 0;
+
+    width: 100%;
+    height: auto;
+
+    overflow: hidden;
+}
+
+.splice {
+    z-index: 2;
+    display: block;
+
+    position: relative;
+    width: 100%;
+    max-height: 300px;
+    margin: 0 auto;
+
+    object-fit: cover;
+}
+
+/*-------------*/
+/* FISH BUTTON */
+/*-------------*/
+
+.container {
+    position: relative;
+    text-align: center;
+    bottom: -35%;
+}
+
+button {
+    z-index: 2;
+
+    position: fixed;
+    left: 50%;
+    bottom: 20px;
+    transform: translate(-50%, -50%); 
+
+    width: 200px;
+    height: 50px;
+
+    font-family: Verdana;
+    font-size: 25px;
+    color: white;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/*--------*/
+/* BOBBER */
+/*--------*/
+
+@keyframes spawn {
+    0% {
+        top: -100%;
+    }
+    100% {
+        top: -35%; 
+    }
+}
+
+@keyframes fish {
+    0% {
+        top: -35%; 
+    }
+    40% {
+        top: -15%; 
+    }
+    60% {
+        top: -15%; 
+    }
+    80% {
+        top: -35%; 
+    }
+    100% {
+        top: -35%; 
+    }
+}
+
+#bobber {
+    z-index: 0;
+
+    position: fixed;
+    top: -35%; 
+    left: 50%;
+    transform: translateX(-50%);
+
+    animation: spawn 1s ease-out; 
+}
+
+#bobber.fish {
+    animation: fish 2s ease-in-out; 
+}
+
 /*--------------*/
 /* PETR STICKER */
 /*--------------*/
 
-@keyframes zoomIn {
+@keyframes pulse-in {
     0% {
         transform: translate(-50%, -50%) scale(0);
         opacity: 0;
     }
-    50% {
+    65% {
+        transform: translate(-50%, -50%) scale(0);
+        opacity: 0;
+    }
+    82.5% {
         transform: translate(-50%, -50%) scale(1.1);
         opacity: 0.8;
     }
@@ -72,6 +165,7 @@ img {
 }
 
 #petr-img {
+    z-index: 3; 
     display: none; 
 
     position: fixed; 
@@ -80,21 +174,20 @@ img {
 
     transform: translate(-50%, -50%) scale(0);
     opacity: 0;
-    z-index: 1; 
 }
 
 #petr-img.appear {
     transform: translate(-50%, -50%) scale(1);
     opacity: 1; 
 
-    animation: zoomIn 0.7s ease-out;
+    animation: pulse-in 2s ease-out;
 }
 
 /*----------------*/
 /* PRIZE BACKDROP */
 /*----------------*/
 
-@keyframes rotate {
+@keyframes spin {
     from {
         transform: rotate(0deg); 
     }
@@ -103,14 +196,71 @@ img {
     }
 }
 
+@keyframes scale-in {
+    0% {
+        transform: scale(0); 
+        opacity: 0
+    }
+    65% {
+        transform: scale(0); 
+        opacity: 0
+    }
+    100% {
+        transform: scale(1); 
+        opacity: 0.8
+    }
+}
+
 #prize-backdrop {
+    z-index: 2; 
+
     position: fixed;
     top: 15%;
     left: 29.5%;
 
-    transform: translate(-50%, -50%);
     opacity: 0;
-    z-index: 0; 
+}
 
-    animation: rotate 8s linear infinite;
+#prize-backdrop.appear {
+    opacity: 0.8;
+    animation: scale-in 2s linear, spin 8s linear infinite;
+}
+
+/*---------------*/
+/* PRIZE MESSAGE */
+/*---------------*/
+
+@keyframes pop {
+    0% {
+        opacity: 0
+    }
+    70% {
+        opacity: 0
+    }
+    80% {
+        opacity: 1
+    }
+    100% {
+        opacity: 1
+    }
+}
+
+#prize-message {
+    z-index: 3;
+
+    position: absolute;
+    text-align: center;
+    bottom: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    opacity: 0;
+    font-family: Verdana;
+    font-size: 32px;
+    color: gold;
+}
+
+#prize-message.appear {
+    opacity: 1;
+    animation: pop 2s linear;
 }
