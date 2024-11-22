@@ -1,7 +1,7 @@
 const petrs = [
     ["donald_duck_petr.png", "Donald Duck Petr"],
     ["joker_petr.png", "Joker Petr"],
-    ["kermit_petr.png", "Kemrit Petr"],
+    ["kermit_petr.png", "Kermit Petr"],
     ["normal_petr.png", "Normal Petr"],
     ["shrek_petr.png", "Shrek Petr"]
 ];
