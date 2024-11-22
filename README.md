@@ -1,7 +1,6 @@
 # CAMPSITE GAMES
+[![Contributors][contributors-shield]][contributors-url]
 As you settle in under the nice nature scene of the forest with some time to kill, you wonder what are you going to do. Well, you are in luck with our website CampSITE you can play up to 2 different games. Selecting the pond or the tent will redirect you to a game. When selecting the pond it will bring you to the game of fishing. On the other hand, selecting the tent will bring you to a game of geoguessr.
-
-We used Javascript, CSS, and HTML to code our website and the functionalities behind it.
 
 ## Fishing
 In the game of Fishing, you will be testing your abilities of timing and precision. You will be getting awesome rewards by fishing, you have a chance to get all the collectibles provided by us.
