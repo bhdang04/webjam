@@ -1,0 +1,116 @@
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden; /* Prevent scrolling */
+    background-color: #1b3d6d;
+}
+
+.container {
+    position: relative;
+    text-align: center;
+    bottom: -35%;
+}
+
+button {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translate(-50%, -50%); 
+    width: 200px;
+    height: 50px;
+    font-family: Verdana;
+    font-size: 25px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 1;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.image-container {
+    position: fixed;
+    top: -100%; /* Start off-screen */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10s;
+    transition: top 0.5s ease-in-out; /* Smooth sliding */
+}
+
+img {
+    max-width: 100%;
+    max-height: 100%;
+    pointer-events: none; /* Ensure the image isn't clickable */
+    user-select: none;
+}
+
+/*--------------*/
+/* PETR STICKER */
+/*--------------*/
+
+@keyframes zoomIn {
+    0% {
+        transform: translate(-50%, -50%) scale(0);
+        opacity: 0;
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(1.1);
+        opacity: 0.8;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+    }
+}
+
+#petr-img {
+    display: none; 
+
+    position: fixed; 
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0;
+    z-index: 1; 
+}
+
+#petr-img.appear {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1; 
+
+    animation: zoomIn 0.7s ease-out;
+}
+
+/*----------------*/
+/* PRIZE BACKDROP */
+/*----------------*/
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg); 
+    }
+    to {
+        transform: rotate(360deg); 
+    }
+}
+
+#prize-backdrop {
+    position: fixed;
+    top: 15%;
+    left: 29.5%;
+
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    z-index: 0; 
+
+    animation: rotate 8s linear infinite;
+}
