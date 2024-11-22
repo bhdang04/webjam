@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>UCI GeoGuessr</title>
+    <link rel="stylesheet" href="style.css">      
+  </head>
+  <body>
+    <div id="street-view"></div>
+
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAZswG54Mv8qArSUV1oo1sFgIlAFpGcdio&callback=initialize&libraries=&v=weekly"
+      async
+    ></script>
+
+    <div id="user-input">
+      <h1 id="guess-prompt">Guess where you are!</h1>
+      <h2 id="score">Your current score is: 0</h2>
+      <form id="guess-form">
+        <label for="location">Location:</label>
+        <input type="text" id="location" placeholder="Enter your guess">
+        <button type="submit">Submit</button>
+      </form>
+      <div id="result"></div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
