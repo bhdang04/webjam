@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>GeoGuessr</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <style type="text/css">
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        background-color: #1b3d6d;
+      }
+
+      #user-input {
+        position: relative;
+        top: 20px;
+        margin: 0 auto;
+        z-index: 5;
+        background-color: #fecc07;
+        border: 1px solid #999;
+        text-align: center;
+        font-family: "Roboto", "sans-serif";
+        line-height: 25px;
+        width: 30%;
+        height: auto;
+        padding: 20px;
+      }
+
+      #street-view {
+        height: 50%; 
+        width: 50%;
+        margin: 50px auto;
+      }
+      
+      #result {
+        margin-top: 15px;
+        font-weight: bold;
+      }
+
+      .gm-iv-address {
+        display: none;
+      }
+    </style>
+    <script>
+      let score = 0;
+
+      let panorama;
+
+      const places = [
+        [{ lat: 33.643889, lng: -117.841944 }, { building: 'ICS' }],
+        [{ lat: 33.643056, lng: -117.841944 }, { building: 'DBH' }],
+      ];
+
+      let currentPlace = places[Math.floor(Math.random() * places.length)];
+      let coordinates = currentPlace[0];
+      let building = currentPlace[1].building;
+
+      const reconfigure = () => {
+        currentPlace = places[Math.floor(Math.random() * places.length)];
+        coordinates = currentPlace[0];
+        building = currentPlace[1].building;
+
+        initialize();
+      };
+
+      function initialize() {
+        panorama = new google.maps.StreetViewPanorama(
+          document.getElementById('street-view'),
+          {
+            position: coordinates,
+            pov: { heading: 165, pitch: 0 },
+            zoom: 1,
+            disableDefaultUI: true,
+            linksControl: false,
+          }
+        );
+      }
+
+      const handleSubmit = (event) => {
+        event.preventDefault();
+
+        const userGuess = document.getElementById('location').value.trim();
+        const resultElement = document.getElementById('result');
+
+        if (userGuess.toLowerCase() === building.toLowerCase()) {
+          score += 1;
+          resultElement.innerText = `Correct! The answer was ${building}.`;
+          resultElement.style.color = "green";
+        } else {
+          resultElement.innerText = `Wrong! The correct answer was ${building}.`;
+          resultElement.style.color = "red";
+        }
+
+        document.getElementById('score').innerText = `Your current score is: ${score}`;
+        document.getElementById('location').value = "";
+
+        reconfigure();
+      };
+    </script>
+  </head>
+  <body>
+    <div id="street-view"></div>
+
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAZswG54Mv8qArSUV1oo1sFgIlAFpGcdio&callback=initialize&libraries=&v=weekly"
+      async
+    ></script>
+
+    <div id="user-input">
+      <h1>Guess where you are!</h1>
+      <h2 id="score">Your current score is: 0</h2>
+      <form id="guess-form">
+        <label for="location">Location:</label>
+        <input type="text" id="location" placeholder="Enter your guess">
+        <button type="submit">Submit</button>
+      </form>
+      <div id="result"></div>
+    </div>
+
+    <script>
+      document.getElementById('guess-form').addEventListener('submit', handleSubmit);
+    </script>
+  </body>
+</html>
